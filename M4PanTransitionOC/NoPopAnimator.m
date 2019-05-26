@@ -1,15 +1,14 @@
 //
-//  NormalPopAnimator.m
+//  NoPopAnimator.m
 //  M4PanTransitionOC
 //
 //  Created by Chen,Meisong on 2019/5/26.
 //  Copyright © 2019 xyz.chenms. All rights reserved.
 //
 
-#import "NormalPopAnimator.h"
+#import "NoPopAnimator.h"
 
-@implementation NormalPopAnimator
-
+@implementation NoPopAnimator
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
     return 2;
@@ -23,13 +22,18 @@
     CGRect fromDestFrame = container.bounds;
     fromDestFrame.origin.x += container.bounds.size.width;
     
+    fromVC.view.alpha = 0.01;
+    NSLog(@"【m2】  %s", __func__);
     [container insertSubview:toVC.view belowSubview:fromVC.view];
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        fromVC.view.frame = fromDestFrame;
+        fromVC.view.alpha = 0;
     } completion:^(BOOL finished) {
+        if ([transitionContext transitionWasCancelled]) {
+            fromVC.view.alpha = 1;
+        }
+        NSLog(@"【m2】  %s", __func__);
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
 }
-
 @end

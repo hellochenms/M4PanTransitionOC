@@ -9,12 +9,14 @@
 #import "DetailViewController.h"
 #import "NormalPopAnimator.h"
 #import "M7ScreenEdgePanInteractiveTransition.h"
+#import "NoPopAnimator.h"
 
 @interface DetailViewController ()<UINavigationControllerDelegate>
 @property (nonatomic) UIButton *popButton;
 @property (nonatomic) NormalPopAnimator *normalPopAnimator;
 @property (nonatomic) id<UINavigationControllerDelegate> originNaviDelegate;
 @property (nonatomic) M7ScreenEdgePanInteractiveTransition *screenEdgePanInteractor;
+@property (nonatomic) NoPopAnimator *popAnimator;
 @end
 
 @implementation DetailViewController
@@ -55,7 +57,7 @@
                                                          fromViewController:(UIViewController *)fromVC
                                                            toViewController:(UIViewController *)toVC  {
     if (operation == UINavigationControllerOperationPop) {
-        return self.normalPopAnimator;
+        return self.popAnimator;
     }
     
     return nil;
@@ -63,7 +65,7 @@
 
 - (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
                                    interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
-    if (animationController == self.normalPopAnimator
+    if (animationController == self.popAnimator
         && self.screenEdgePanInteractor.isInteracting) {
         return self.screenEdgePanInteractor;
     }
@@ -102,5 +104,12 @@
     }
     
     return _screenEdgePanInteractor;
+}
+- (NoPopAnimator *)popAnimator {
+    if (!_popAnimator) {
+        _popAnimator = [NoPopAnimator new];
+    }
+    
+    return _popAnimator;
 }
 @end
