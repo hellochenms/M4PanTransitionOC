@@ -23,14 +23,15 @@
     CGRect fromDestFrame = container.bounds;
     fromDestFrame.origin.x += container.bounds.size.width;
     
-    
     [container insertSubview:toVC.view belowSubview:fromVC.view];
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
         fromVC.view.frame = fromDestFrame;
     } completion:^(BOOL finished) {
-        [fromVC.view removeFromSuperview];
-        [transitionContext completeTransition:finished];
+//        if (finished) {
+//            [fromVC.view removeFromSuperview];
+//        }
+        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
 }
 

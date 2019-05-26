@@ -30,8 +30,10 @@
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
         toVC.view.frame = toDestFrame;
     } completion:^(BOOL finished) {
-        [fromVC.view removeFromSuperview];
-        [transitionContext completeTransition:finished];
+//        if (finished) {
+//            [fromVC.view removeFromSuperview];
+//        }
+        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
 }
 

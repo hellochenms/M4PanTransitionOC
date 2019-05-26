@@ -8,11 +8,13 @@
 
 #import "DetailViewController.h"
 #import "NormalPopAnimator.h"
+#import "M7ScreenEdgePanInteractiveTransition.h"
 
 @interface DetailViewController ()<UINavigationControllerDelegate>
 @property (nonatomic) UIButton *popButton;
 @property (nonatomic) NormalPopAnimator *normalPopAnimator;
 @property (nonatomic) id<UINavigationControllerDelegate> originNaviDelegate;
+@property (nonatomic) M7ScreenEdgePanInteractiveTransition *screenEdgePanInteractor;
 @end
 
 @implementation DetailViewController
@@ -24,6 +26,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.popButton];
+    
+    [self.screenEdgePanInteractor bindViewController:self];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -57,6 +61,16 @@
     return nil;
 }
 
+- (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
+    if (animationController == self.normalPopAnimator
+        && self.screenEdgePanInteractor.isInteracting) {
+        return self.screenEdgePanInteractor;
+    }
+    
+    return nil;
+}
+
 #pragma mark - Event
 - (void)onTapPop {
     [self.navigationController popViewControllerAnimated:YES];
@@ -82,4 +96,11 @@
     return _normalPopAnimator;
 }
 
+- (M7ScreenEdgePanInteractiveTransition *)screenEdgePanInteractor {
+    if (!_screenEdgePanInteractor) {
+        _screenEdgePanInteractor = [M7ScreenEdgePanInteractiveTransition new];
+    }
+    
+    return _screenEdgePanInteractor;
+}
 @end
