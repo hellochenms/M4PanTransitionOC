@@ -10,13 +10,20 @@
 #import "NormalPopAnimator.h"
 #import "M7ScreenEdgePanInteractiveTransition.h"
 #import "NoPopAnimator.h"
+#import "PanPopInteractor.h"
+#import "ShareItemAnimator.h"
 
-@interface DetailViewController ()<UINavigationControllerDelegate>
+@interface DetailViewController ()<
+UINavigationControllerDelegate
+, ShareItemAnimatorable>
 @property (nonatomic) UIButton *popButton;
+@property (nonatomic) UIImageView *imageView;
+@property (nonatomic) UILabel *someLabel;
 @property (nonatomic) NormalPopAnimator *normalPopAnimator;
 @property (nonatomic) id<UINavigationControllerDelegate> originNaviDelegate;
 @property (nonatomic) M7ScreenEdgePanInteractiveTransition *screenEdgePanInteractor;
 @property (nonatomic) NoPopAnimator *popAnimator;
+@property (nonatomic) PanPopInteractor *panPopInteractor;
 @end
 
 @implementation DetailViewController
@@ -28,14 +35,19 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.popButton];
+    [self.view addSubview:self.imageView];
+    [self.view addSubview:self.someLabel];
     
-    [self.screenEdgePanInteractor bindViewController:self];
+//    [self.screenEdgePanInteractor bindViewController:self];
+    [self.panPopInteractor bindViewController:self];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
     self.popButton.frame = CGRectMake(20, 64, 100, 40);
+    self.imageView.frame = CGRectMake(20, CGRectGetMaxY(self.popButton.frame), 300, 200);
+    self.someLabel.frame = CGRectMake(20, CGRectGetMaxY(self.imageView.frame), 300, 40);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,20 +69,27 @@
                                                          fromViewController:(UIViewController *)fromVC
                                                            toViewController:(UIViewController *)toVC  {
     if (operation == UINavigationControllerOperationPop) {
-        return self.popAnimator;
+        return self.normalPopAnimator;
     }
     
     return nil;
 }
 
-- (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
-                                   interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
-    if (animationController == self.popAnimator
-        && self.screenEdgePanInteractor.isInteracting) {
-        return self.screenEdgePanInteractor;
-    }
+//- (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+//                                   interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
+//    if (animationController == self.popAnimator
+//        && self.panPopInteractor.isInteracting) {
+//        return self.panPopInteractor;
+//    }
+//
+//    return nil;
+//}
+
+#pragma mark - ShareItemAnimatorable
+- (UIView *)shareView {
+    [self.view layoutIfNeeded];
     
-    return nil;
+    return self.imageView;
 }
 
 #pragma mark - Event
@@ -111,5 +130,28 @@
     }
     
     return _popAnimator;
+}
+- (PanPopInteractor *)panPopInteractor {
+    if (!_panPopInteractor) {
+        _panPopInteractor = [PanPopInteractor new];
+    }
+    
+    return _panPopInteractor;
+}
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [UIImageView new];
+        _imageView.backgroundColor = [UIColor redColor];
+    }
+    
+    return _imageView;
+}
+- (UILabel *)someLabel {
+    if (!_someLabel) {
+        _someLabel = [UILabel new];
+        _someLabel.text = @"就是占个位置";
+    }
+    
+    return _someLabel;
 }
 @end

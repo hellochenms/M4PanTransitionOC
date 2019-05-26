@@ -6,12 +6,15 @@
 //  Copyright © 2019 xyz.chenms. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PanPopInteractor : NSObject
-
+@interface PanPopInteractor : UIPercentDrivenInteractiveTransition
+@property (nonatomic, readonly) BOOL isInteracting;
+@property (nonatomic) double minShouldFinishProgress;
++ (instancetype)transition;
+- (void)bindViewController:(UIViewController *)popViewController;
 @end
 
 NS_ASSUME_NONNULL_END

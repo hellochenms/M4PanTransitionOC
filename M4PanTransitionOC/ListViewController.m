@@ -11,17 +11,21 @@
 #import "Cell.h"
 #import "DetailViewController.h"
 #import "PushAnimator.h"
+#import "ShareItemAnimator.h"
 
 static NSString * const kCellIdentifier = @"kCellIdentifier";
 
 @interface ListViewController ()<
 UICollectionViewDataSource
 , UICollectionViewDelegate
-, UINavigationControllerDelegate>
+, UINavigationControllerDelegate
+, ShareItemAnimatorable>
 @property (nonatomic) UICollectionView *collectionView;
 @property (nonatomic) NSArray *datas;
 @property (nonatomic) PushAnimator *pushAnimator;
+@property (nonatomic) ShareItemAnimator *shareItemAnimator;
 @property (nonatomic) id<UINavigationControllerDelegate> originNaviDelegate;
+@property (nonatomic) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation ListViewController
@@ -66,6 +70,8 @@ UICollectionViewDataSource
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndexPath = indexPath;
+    
     DetailViewController *detailVC = [DetailViewController new];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
@@ -76,10 +82,17 @@ UICollectionViewDataSource
                                                          fromViewController:(UIViewController *)fromVC
                                                            toViewController:(UIViewController *)toVC  {
     if (operation == UINavigationControllerOperationPush) {
-        return self.pushAnimator;
+        return self.shareItemAnimator;
     }
     
     return nil;
+}
+
+#pragma mark - ShareItemAnimatorable
+- (UIView *)shareView {
+    Cell *cell = (Cell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPath];
+    
+    return cell.someView;
 }
 
 #pragma mark - Getter
@@ -112,4 +125,11 @@ UICollectionViewDataSource
     return _pushAnimator;
 }
 
+- (ShareItemAnimator *)shareItemAnimator {
+    if (!_shareItemAnimator) {
+        _shareItemAnimator = [ShareItemAnimator new];
+    }
+    
+    return _shareItemAnimator;
+}
 @end

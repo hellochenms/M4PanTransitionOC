@@ -12,6 +12,7 @@
 		997FAB7C229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FAB7B229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.m */; };
 		997FAB7F229AA5D9003B077F /* PanPopInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FAB7E229AA5D9003B077F /* PanPopInteractor.m */; };
 		997FAB82229AA617003B077F /* NoPopAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FAB81229AA617003B077F /* NoPopAnimator.m */; };
+		997FAB85229AE84E003B077F /* ShareItemAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FAB84229AE84E003B077F /* ShareItemAnimator.m */; };
 		99879A41229A8A2300F2734A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99879A40229A8A2300F2734A /* AppDelegate.m */; };
 		99879A47229A8A2300F2734A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99879A45229A8A2300F2734A /* Main.storyboard */; };
 		99879A49229A8A2400F2734A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99879A48229A8A2400F2734A /* Assets.xcassets */; };
@@ -34,6 +35,8 @@
 		997FAB7E229AA5D9003B077F /* PanPopInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PanPopInteractor.m; sourceTree = "<group>"; };
 		997FAB80229AA617003B077F /* NoPopAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoPopAnimator.h; sourceTree = "<group>"; };
 		997FAB81229AA617003B077F /* NoPopAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoPopAnimator.m; sourceTree = "<group>"; };
+		997FAB83229AE84E003B077F /* ShareItemAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareItemAnimator.h; sourceTree = "<group>"; };
+		997FAB84229AE84E003B077F /* ShareItemAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareItemAnimator.m; sourceTree = "<group>"; };
 		99879A3C229A8A2300F2734A /* M4PanTransitionOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M4PanTransitionOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99879A3F229A8A2300F2734A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		99879A40229A8A2300F2734A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -92,12 +95,14 @@
 				99879A59229A8A4400F2734A /* DetailViewController.m */,
 				9959AD48229A8F3800ABAA96 /* PushAnimator.h */,
 				9959AD49229A8F3800ABAA96 /* PushAnimator.m */,
+				997FAB83229AE84E003B077F /* ShareItemAnimator.h */,
+				997FAB84229AE84E003B077F /* ShareItemAnimator.m */,
 				997FAB77229A98EF003B077F /* NormalPopAnimator.h */,
 				997FAB78229A98EF003B077F /* NormalPopAnimator.m */,
-				997FAB80229AA617003B077F /* NoPopAnimator.h */,
-				997FAB81229AA617003B077F /* NoPopAnimator.m */,
 				997FAB7A229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.h */,
 				997FAB7B229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.m */,
+				997FAB80229AA617003B077F /* NoPopAnimator.h */,
+				997FAB81229AA617003B077F /* NoPopAnimator.m */,
 				997FAB7D229AA5D9003B077F /* PanPopInteractor.h */,
 				997FAB7E229AA5D9003B077F /* PanPopInteractor.m */,
 				99879A5B229A8B3100F2734A /* ListGenerator */,
@@ -192,6 +197,7 @@
 				9959AD4A229A8F3800ABAA96 /* PushAnimator.m in Sources */,
 				997FAB79229A98EF003B077F /* NormalPopAnimator.m in Sources */,
 				997FAB7F229AA5D9003B077F /* PanPopInteractor.m in Sources */,
+				997FAB85229AE84E003B077F /* ShareItemAnimator.m in Sources */,
 				99879A5A229A8A4400F2734A /* DetailViewController.m in Sources */,
 				99879A5E229A8B3100F2734A /* M4TempListGenerator.m in Sources */,
 				99879A4F229A8A2400F2734A /* main.m in Sources */,
