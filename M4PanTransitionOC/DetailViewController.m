@@ -69,21 +69,23 @@ UINavigationControllerDelegate
                                                          fromViewController:(UIViewController *)fromVC
                                                            toViewController:(UIViewController *)toVC  {
     if (operation == UINavigationControllerOperationPop) {
-        return self.normalPopAnimator;
+        return self.popAnimator;
     }
     
     return nil;
 }
 
-//- (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
-//                                   interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
-//    if (animationController == self.popAnimator
-//        && self.panPopInteractor.isInteracting) {
-//        return self.panPopInteractor;
-//    }
-//
-//    return nil;
-//}
+- (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
+    if (animationController == self.popAnimator
+        && self.panPopInteractor.isInteracting) {
+        self.panPopInteractor.animator = self.popAnimator;
+        
+        return self.panPopInteractor;
+    }
+
+    return nil;
+}
 
 #pragma mark - ShareItemAnimatorable
 - (UIView *)shareView {

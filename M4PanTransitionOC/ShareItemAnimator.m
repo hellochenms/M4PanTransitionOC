@@ -15,7 +15,7 @@
 @implementation ShareItemAnimator
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
-    return 0.5;
+    return 0.25;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -40,11 +40,9 @@
         pseudoShareView.frame = toShareFrame;
         toVC.view.alpha = 1;
     } completion:^(BOOL finished) {
-        if (![transitionContext transitionWasCancelled]) {
-            [pseudoShareView removeFromSuperview];
-            fromShareView.hidden = NO;
-            toShareView.hidden = NO;
-        }
+        [pseudoShareView removeFromSuperview];
+        fromShareView.hidden = NO;
+        toShareView.hidden = NO;
         
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];

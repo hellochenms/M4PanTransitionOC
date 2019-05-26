@@ -10,8 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NoPopAnimator : NSObject<UIViewControllerAnimatedTransitioning>
+@protocol NoPopAnimatorable;
 
+@interface NoPopAnimator : NSObject<UIViewControllerAnimatedTransitioning>
+@property (nonatomic, weak, readonly) UIView *pseudoShareView;
+@property (nonatomic, weak, readonly) id <UIViewControllerContextTransitioning> transitionContext;
+@end
+
+@protocol NoPopAnimatorable <NSObject>
+- (UIView *)shareView;
 @end
 
 NS_ASSUME_NONNULL_END
