@@ -1,31 +1,31 @@
 //
-//  PanPopInteractor.m
+//  RealPanPopInteractor.m
 //  M4PanTransitionOC
 //
-//  Created by Chen,Meisong on 2019/5/26.
+//  Created by Chen,Meisong on 2019/5/27.
 //  Copyright © 2019 xyz.chenms. All rights reserved.
 //
 
-#import "PanPopInteractor.h"
+#import "RealPanPopInteractor.h"
 
-@interface PanPopInteractor ()
+@interface RealPanPopInteractor ()
 @property (nonatomic, weak) UIViewController *viewController;
 @property (nonatomic) BOOL isInteracting;
 @property (nonatomic) CGPoint lastTranslation;
 @end
 
-@implementation PanPopInteractor
+@implementation RealPanPopInteractor
 + (instancetype)transition {
-    return [PanPopInteractor new];
+    return [RealPanPopInteractor new];
 }
 
 #pragma mark - Public
-- (void)bindViewController:(UIViewController *)popViewController {
+- (void)bindViewController:(UIViewController<RealShareItemPopAnimatorable> *)popViewController {
     self.viewController = popViewController;
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
     self.viewController.view.userInteractionEnabled = YES;
-    [self.viewController.view addGestureRecognizer:pan];
+    [[popViewController realShareViewContainer] addGestureRecognizer:pan];
 }
 
 #pragma mark - Event
@@ -34,6 +34,10 @@
 //    NSLog(@"【m2】translation:%@  %s", NSStringFromCGPoint(translation), __func__);
     switch (pan.state) {
         case UIGestureRecognizerStateBegan: {
+            NSLog(@"【m2】【【【【【【【【【【【【【  %s", __func__);
+            if ([self.delegate respondsToSelector:@selector(willBeginPan:)]) {
+                [self.delegate willBeginPan:self];
+            }
             self.isInteracting = YES;
             self.lastTranslation = translation;
             [self.viewController
@@ -42,36 +46,37 @@
         }
         case UIGestureRecognizerStateChanged: {
             UIViewController *fromVC = [self.animator.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-            CGPoint center = self.animator.pseudoShareView.center;
+            CGPoint center = self.animator.shareView.center;
             CGPoint change = CGPointMake(translation.x - self.lastTranslation.x, translation.y - self.lastTranslation.y);
             center.x += change.x;
             center.y += change.y;
-            self.animator.pseudoShareView.center = center;
+            self.animator.shareView.center = center;
             self.lastTranslation = translation;
             break;
         }
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled: {
+            NSLog(@"【m2】】】】】】】】】】】】】  %s", __func__);
             CGPoint velocity = [pan velocityInView:pan.view];
             if (velocity.x <= 0) {
                 UIView *container = self.animator.transitionContext.containerView;
-                UIViewController<NoPopAnimatorable> *fromVC = [self.animator.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-                UIView *fromShareView = [fromVC shareView];
-                CGRect fromShareFrame = [fromShareView.superview convertRect:fromShareView.frame toView:container];
+                UIViewController<RealShareItemPopAnimatorable> *fromVC = [self.animator.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+                UIView *fromShareContainer = [fromVC realShareViewContainer];
+                CGRect fromShareContainerFrame = [fromShareContainer.superview convertRect:fromShareContainer.frame toView:container];
                 [UIView animateWithDuration:0.25
                                  animations:^{
-                                     self.animator.pseudoShareView.frame = fromShareFrame;
+                                     self.animator.shareView.frame = fromShareContainerFrame;
                                  } completion:^(BOOL finished) {
                                      [self cancelInteractiveTransition];
                                  }];
             } else {
                 UIView *container = self.animator.transitionContext.containerView;
-                UIViewController<NoPopAnimatorable> *toVC = [self.animator.transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-                UIView *toShareView = [toVC shareView];
-                CGRect toShareFrame = [toShareView.superview convertRect:toShareView.frame toView:container];
+                UIViewController<RealShareItemPopAnimatorable> *toVC = [self.animator.transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+                UIView *toShareContainer = [toVC realShareViewContainer];
+                CGRect toShareContainerFrame = [toShareContainer.superview convertRect:toShareContainer.frame toView:container];
                 [UIView animateWithDuration:0.25
                                  animations:^{
-                                     self.animator.pseudoShareView.frame = toShareFrame;
+                                     self.animator.shareView.frame = toShareContainerFrame;
                                  } completion:^(BOOL finished) {
                                      [self updateInteractiveTransition:1];
                                      [self finishInteractiveTransition];
@@ -85,5 +90,4 @@
             break;
     }
 }
-
 @end

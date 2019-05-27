@@ -12,20 +12,21 @@
 #import "DetailViewController.h"
 #import "PushAnimator.h"
 #import "ShareItemAnimator.h"
+#import "RealShareItemAnimator.h"
 
 static NSString * const kCellIdentifier = @"kCellIdentifier";
 
 @interface ListViewController ()<
 UICollectionViewDataSource
 , UICollectionViewDelegate
-, UINavigationControllerDelegate
-, ShareItemAnimatorable>
+, UINavigationControllerDelegate>
 @property (nonatomic) UICollectionView *collectionView;
 @property (nonatomic) NSArray *datas;
 @property (nonatomic) PushAnimator *pushAnimator;
 @property (nonatomic) ShareItemAnimator *shareItemAnimator;
 @property (nonatomic) id<UINavigationControllerDelegate> originNaviDelegate;
 @property (nonatomic) NSIndexPath *selectedIndexPath;
+@property (nonatomic) RealShareItemAnimator *realShareItemAnimator;
 @end
 
 @implementation ListViewController
@@ -82,7 +83,7 @@ UICollectionViewDataSource
                                                          fromViewController:(UIViewController *)fromVC
                                                            toViewController:(UIViewController *)toVC  {
     if (operation == UINavigationControllerOperationPush) {
-        return self.shareItemAnimator;
+        return self.realShareItemAnimator;
     }
     
     return nil;
@@ -92,7 +93,20 @@ UICollectionViewDataSource
 - (UIView *)shareView {
     Cell *cell = (Cell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPath];
     
-    return cell.someView;
+    return cell.webView;
+}
+
+#pragma mark - RealShareItemAnimatorable
+- (UIView *)realShareView {
+    Cell *cell = (Cell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPath];
+    
+    return cell.webView;
+}
+
+- (UIView *)realShareViewContainer {
+    Cell *cell = (Cell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPath];
+    
+    return cell.someContainer;
 }
 
 #pragma mark - Getter
@@ -131,5 +145,12 @@ UICollectionViewDataSource
     }
     
     return _shareItemAnimator;
+}
+- (RealShareItemAnimator *)realShareItemAnimator {
+    if (!_realShareItemAnimator) {
+        _realShareItemAnimator = [RealShareItemAnimator new];
+    }
+    
+    return _realShareItemAnimator;
 }
 @end

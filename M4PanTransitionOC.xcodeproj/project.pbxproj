@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9959AD4A229A8F3800ABAA96 /* PushAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9959AD49229A8F3800ABAA96 /* PushAnimator.m */; };
+		99798E2A229BC383006AF7E7 /* RealShareItemAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 99798E29229BC383006AF7E7 /* RealShareItemAnimator.m */; };
+		99798E2E229BD0DF006AF7E7 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 99798E2D229BD0DF006AF7E7 /* 1.gif */; };
+		99798E31229BD2EF006AF7E7 /* RealPanPopInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 99798E30229BD2EF006AF7E7 /* RealPanPopInteractor.m */; };
+		99798E34229BD337006AF7E7 /* RealShareItemPopAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 99798E33229BD337006AF7E7 /* RealShareItemPopAnimator.m */; };
 		997FAB79229A98EF003B077F /* NormalPopAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FAB78229A98EF003B077F /* NormalPopAnimator.m */; };
 		997FAB7C229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FAB7B229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.m */; };
 		997FAB7F229AA5D9003B077F /* PanPopInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FAB7E229AA5D9003B077F /* PanPopInteractor.m */; };
@@ -27,6 +31,13 @@
 /* Begin PBXFileReference section */
 		9959AD48229A8F3800ABAA96 /* PushAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushAnimator.h; sourceTree = "<group>"; };
 		9959AD49229A8F3800ABAA96 /* PushAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushAnimator.m; sourceTree = "<group>"; };
+		99798E28229BC383006AF7E7 /* RealShareItemAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealShareItemAnimator.h; sourceTree = "<group>"; };
+		99798E29229BC383006AF7E7 /* RealShareItemAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealShareItemAnimator.m; sourceTree = "<group>"; };
+		99798E2D229BD0DF006AF7E7 /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
+		99798E2F229BD2EF006AF7E7 /* RealPanPopInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealPanPopInteractor.h; sourceTree = "<group>"; };
+		99798E30229BD2EF006AF7E7 /* RealPanPopInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealPanPopInteractor.m; sourceTree = "<group>"; };
+		99798E32229BD337006AF7E7 /* RealShareItemPopAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealShareItemPopAnimator.h; sourceTree = "<group>"; };
+		99798E33229BD337006AF7E7 /* RealShareItemPopAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealShareItemPopAnimator.m; sourceTree = "<group>"; };
 		997FAB77229A98EF003B077F /* NormalPopAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalPopAnimator.h; sourceTree = "<group>"; };
 		997FAB78229A98EF003B077F /* NormalPopAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalPopAnimator.m; sourceTree = "<group>"; };
 		997FAB7A229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M7ScreenEdgePanInteractiveTransition.h; sourceTree = "<group>"; };
@@ -66,6 +77,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99798E2B229BD0D1006AF7E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				99798E2C229BD0D1006AF7E7 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		99798E2C229BD0D1006AF7E7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				99798E2D229BD0DF006AF7E7 /* 1.gif */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		99879A33229A8A2300F2734A = {
 			isa = PBXGroup;
 			children = (
@@ -105,9 +132,16 @@
 				997FAB81229AA617003B077F /* NoPopAnimator.m */,
 				997FAB7D229AA5D9003B077F /* PanPopInteractor.h */,
 				997FAB7E229AA5D9003B077F /* PanPopInteractor.m */,
+				99798E28229BC383006AF7E7 /* RealShareItemAnimator.h */,
+				99798E29229BC383006AF7E7 /* RealShareItemAnimator.m */,
+				99798E32229BD337006AF7E7 /* RealShareItemPopAnimator.h */,
+				99798E33229BD337006AF7E7 /* RealShareItemPopAnimator.m */,
+				99798E2F229BD2EF006AF7E7 /* RealPanPopInteractor.h */,
+				99798E30229BD2EF006AF7E7 /* RealPanPopInteractor.m */,
 				99879A5B229A8B3100F2734A /* ListGenerator */,
 				99879A45229A8A2300F2734A /* Main.storyboard */,
 				99879A48229A8A2400F2734A /* Assets.xcassets */,
+				99798E2B229BD0D1006AF7E7 /* Resources */,
 				99879A4A229A8A2400F2734A /* LaunchScreen.storyboard */,
 				99879A4D229A8A2400F2734A /* Info.plist */,
 				99879A4E229A8A2400F2734A /* main.m */,
@@ -183,6 +217,7 @@
 			files = (
 				99879A4C229A8A2400F2734A /* LaunchScreen.storyboard in Resources */,
 				99879A49229A8A2400F2734A /* Assets.xcassets in Resources */,
+				99798E2E229BD0DF006AF7E7 /* 1.gif in Resources */,
 				99879A47229A8A2300F2734A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,9 +231,12 @@
 			files = (
 				9959AD4A229A8F3800ABAA96 /* PushAnimator.m in Sources */,
 				997FAB79229A98EF003B077F /* NormalPopAnimator.m in Sources */,
+				99798E34229BD337006AF7E7 /* RealShareItemPopAnimator.m in Sources */,
+				99798E2A229BC383006AF7E7 /* RealShareItemAnimator.m in Sources */,
 				997FAB7F229AA5D9003B077F /* PanPopInteractor.m in Sources */,
 				997FAB85229AE84E003B077F /* ShareItemAnimator.m in Sources */,
 				99879A5A229A8A4400F2734A /* DetailViewController.m in Sources */,
+				99798E31229BD2EF006AF7E7 /* RealPanPopInteractor.m in Sources */,
 				99879A5E229A8B3100F2734A /* M4TempListGenerator.m in Sources */,
 				99879A4F229A8A2400F2734A /* main.m in Sources */,
 				997FAB7C229A9F83003B077F /* M7ScreenEdgePanInteractiveTransition.m in Sources */,

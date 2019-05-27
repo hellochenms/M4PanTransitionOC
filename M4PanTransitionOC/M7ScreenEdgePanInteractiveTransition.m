@@ -31,7 +31,6 @@ static double const kMinShouldFinishProgress = .5;
     return self;
 }
 
-
 #pragma mark - Public
 - (void)bindViewController:(UIViewController *)popViewController {
     self.viewController = popViewController;
@@ -46,7 +45,11 @@ static double const kMinShouldFinishProgress = .5;
 - (void)onPan:(UIScreenEdgePanGestureRecognizer *)pan {
     CGPoint translation = [pan translationInView:pan.view];
     switch (pan.state) {
+            NSLog(@"【m2】@@@@@@@@@@@@@@@@@@@@@@@@  %s", __func__);
         case UIGestureRecognizerStateBegan: {
+            if ([self.delegate respondsToSelector:@selector(willBeginEdgePan:)]) {
+                [self.delegate willBeginEdgePan:self];
+            }
             self.isInteracting = YES;
             self.panTotalWidth = CGRectGetWidth([UIScreen mainScreen].bounds);
             [self.viewController
@@ -62,6 +65,7 @@ static double const kMinShouldFinishProgress = .5;
         }
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled: {
+            NSLog(@"【m2】@@@@@@@@@@@@@@@@@@@@@@@@  %s", __func__);
             if (!self.shouldFinish || pan.state == UIGestureRecognizerStateCancelled) {
                 [self cancelInteractiveTransition];
             } else {

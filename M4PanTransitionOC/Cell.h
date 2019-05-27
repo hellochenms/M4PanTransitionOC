@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Cell : UICollectionViewCell
+@property (nonatomic, readonly) UIImageView *someContainer;
 @property (nonatomic, readonly) UIImageView *someView;
+@property (nonatomic, readonly) WKWebView *webView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PanPopInteractor : UIPercentDrivenInteractiveTransition
 @property (nonatomic, readonly) BOOL isInteracting;
-@property (nonatomic) double minShouldFinishProgress;
 @property (nonatomic) NoPopAnimator *animator;
 + (instancetype)transition;
 - (void)bindViewController:(UIViewController *)popViewController;

@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShareItemAnimator.h"
+#import "RealShareItemPopAnimator.h"
+#import "M7ScreenEdgePanInteractiveTransition.h"
+#import "RealPanPopInteractor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController<
+ShareItemAnimatorable
+, RealShareItemPopAnimatorable
+, RealPanPopInteractorDelegate
+, M7ScreenEdgePanInteractiveTransitionDelegate>
 
 @end
 
